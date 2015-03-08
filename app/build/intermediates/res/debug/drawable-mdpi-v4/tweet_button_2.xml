@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <selector  xmlns:android="http://schemas.android.com/apk/res/android" >
+        <item android:state_pressed="true">
+            <shape xmlns:android="http://schemas.android.com/apk/res/android" >
+                <stroke android:width="1dp" android:color="#aa000000" />
+                <corners android:radius="10dp" />
+                <gradient android:angle="270"
+                    android:centerColor="#79128cea"
+                    android:endColor="#df128cea"
+                    android:startColor="#35128cea" />
+            </shape>
+        </item>
+
+    <item android:state_focused="true">
+        <shape xmlns:android="http://schemas.android.com/apk/res/android" >
+            <stroke android:width="1dp" android:color="#aa000000" />
+            <corners android:radius="10dp" />
+            <gradient android:angle="270"
+                android:centerColor="#89128cea"
+                android:endColor="#ef128cea"
+                android:startColor="#45128cea" />
+        </shape>
+    </item>
+
+    <item >
+        <shape xmlns:android="http://schemas.android.com/apk/res/android" >
+            <stroke android:width="1dp" android:color="#aa000000" />
+            <corners android:radius="10dp" />
+            <gradient android:angle="270"
+                android:centerColor="#99128cea"
+                android:endColor="#ff128cea"
+                android:startColor="#55128cea" />
+        </shape>
+    </item>
+
+    </selector><!-- From: file:/C:/Users/Karl/AndroidStudioProjects/Codepath/MySimpleTweets2/app/src/main/res/drawable-mdpi/tweet_button_2.xml -->

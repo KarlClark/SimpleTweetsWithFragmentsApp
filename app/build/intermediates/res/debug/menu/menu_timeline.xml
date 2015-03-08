@@ -1,0 +1,9 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.codepath.apps.mysimpletweets.TimelineActivity">
+    <item android:id="@+id/action_tweet" android:title="@string/action_tweet"
+        android:orderInCategory="100" app:showAsAction="always"
+        android:icon="@drawable/feather"/>
+</menu>
+<!-- From: file:/C:/Users/Karl/AndroidStudioProjects/Codepath/MySimpleTweets2/app/src/main/res/menu/menu_timeline.xml -->
