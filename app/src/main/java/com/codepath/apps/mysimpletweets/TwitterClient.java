@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.codepath.oauth.OAuthBaseClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
 import org.scribe.builder.api.Api;
@@ -43,18 +44,8 @@ public class TwitterClient extends OAuthBaseClient {
         getClient().get(apiUrl, params, handler);
 	}*/
 
-    public void getHomeTimeline(String id, boolean isMaxId, AsyncHttpResponseHandler handler){
-        String apiUrl = getApiUrl("statuses/home_timeline.json" );
-        RequestParams params = new RequestParams();
-        if (isMaxId){
-            params.put("max_id", id);
-        }else {
-            params.put("since_id", id);
-        }
-        client.get(apiUrl, params, handler);
-    }
 
-    public void getMyInfo(AsyncHttpResponseHandler handler) {
+    public void getUserInfo(AsyncHttpResponseHandler handler) {
         String apiUrl = getApiUrl("account/verify_credentials.json");
         getClient().get(apiUrl, null, handler);
     }
@@ -70,6 +61,20 @@ public class TwitterClient extends OAuthBaseClient {
         params.put("status",  tweet);
         client.post(apiUrl, params, handler);
     }
+
+
+    public void getTimeline(String whichTimeline, String screenName, String id, boolean isMaxId, JsonHttpResponseHandler handler) {
+        String apiUrl = getApiUrl("statuses/" + whichTimeline +".json" );
+        RequestParams params = new RequestParams();
+        if (isMaxId){
+            params.put("max_id", id);
+        }else {
+            params.put("since_id", id);
+        }
+        params.put("screen_name", screenName);
+        client.get(apiUrl, params, handler);
+    }
+
 
 	/* 1. Define the endpoint URL with getApiUrl and pass a relative path to the endpoint
 	 * 	  i.e getApiUrl("statuses/home_timeline.json");

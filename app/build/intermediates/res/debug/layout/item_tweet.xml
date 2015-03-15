@@ -42,4 +42,4 @@
         android:layout_below="@+id/tvBody"
         android:layout_alignLeft="@+id/tvBody"
         android:layout_alignStart="@+id/tvBody" />
-</RelativeLayout><!-- From: file:/C:/Users/Karl/AndroidStudioProjects/Codepath/MySimpleTweets2/app/src/main/res/layout/item_tweet.xml -->
+</RelativeLayout><!-- From: file:/C:/Users/Karl/AndroidStudioProjects/Codepath/MySimpleTweets4/app/src/main/res/layout/item_tweet.xml -->

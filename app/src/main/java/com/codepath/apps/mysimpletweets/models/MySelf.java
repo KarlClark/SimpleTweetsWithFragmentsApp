@@ -19,10 +19,13 @@ public class MySelf {
     public static long myUserId = 0;
     public static String myScreenName  = null;
     public static String myProfileImageUrl = null;
+    public static String myTagline = null;
+    public static int myFollowersCount = 0;
+    public static int myFollowingsCount = 0;
 
     public static void populate(){
 
-        client.getMyInfo(new JsonHttpResponseHandler(){
+        client.getUserInfo(new JsonHttpResponseHandler(){
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject json) {
                 //Log.d("DEBUG", json.toString());
@@ -30,6 +33,9 @@ public class MySelf {
                     myName = json.getString("name");
                     myUserId = json.getLong("id");
                     myProfileImageUrl = json.getString("profile_image_url");
+                    myTagline = json.getString("description");
+                    myFollowersCount = json.getInt("followers_count");
+                    myFollowingsCount = json.getInt("friends_count");
                     Log.i("DEBUG", "My name = " + MySelf.myName);
                     Log.i("DEBUG", "my id = " + MySelf.myUserId);
 

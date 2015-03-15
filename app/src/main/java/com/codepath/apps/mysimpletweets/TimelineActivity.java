@@ -2,72 +2,39 @@ package com.codepath.apps.mysimpletweets;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ListView;
 
-import com.codepath.apps.mysimpletweets.Utility.EndlessScrollListener;
-import com.codepath.apps.mysimpletweets.models.MySelf;
+import com.astuetz.PagerSlidingTabStrip;
+import com.codepath.apps.mysimpletweets.fragments.HomeTimelineFragment;
+import com.codepath.apps.mysimpletweets.fragments.MentiionsTimelineFragment;
+import com.codepath.apps.mysimpletweets.fragments.TweetsListFragment;
 import com.codepath.apps.mysimpletweets.models.Tweet;
-import com.loopj.android.http.JsonHttpResponseHandler;
 
-import org.apache.http.Header;
-import org.json.JSONArray;
-import org.json.JSONObject;
+public class TimelineActivity extends ActionBarActivity implements TweetsListFragment.TweetsListFragmentCallback{
 
-import java.util.ArrayList;
-
-public class TimelineActivity extends ActionBarActivity {
-
-    private TwitterClient client;
-    private ArrayList<Tweet> tweets;
-    private TweetsArrayAdapter aTweets;
-    private ListView lvTweets;
-    private final int numberOfTweetsToDownload = 100;
+    HomeTimelineFragment homeTimelineFragment;
+    MentiionsTimelineFragment mentiionsTimelineFragment;
+    ViewPager vpPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.i("DEBUG", "TimelineActivity onCreate called");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timeline);
-        lvTweets = (ListView)findViewById(R.id.lvTweets);
-        tweets = new ArrayList<>();
-        aTweets = new TweetsArrayAdapter(this, tweets);
-        lvTweets.setAdapter((aTweets));
 
-        lvTweets.setOnScrollListener(new EndlessScrollListener(){
-            @Override
-            public void onLoadMore(int page, int totalItemsCount){
-                Log.d("debug","totalItemsCount= " + totalItemsCount +"  tweets length= " + tweets.size());
-                if (totalItemsCount < numberOfTweetsToDownload){
-                    populateTimeline(tweets.get(totalItemsCount-1).getIdStr() , true);
-                }
-            }
-        });
-
-        client = TwitterApplication.getRestClient();
-        MySelf.populate();
-        populateTimeline("1", false);
+        vpPager = (ViewPager)findViewById(R.id.viewpager);
+        vpPager.setAdapter(new TweetsPagerAdapter(getSupportFragmentManager()));
+        PagerSlidingTabStrip tabStrip =  (PagerSlidingTabStrip)findViewById(R.id.tabs);
+        tabStrip.setViewPager(vpPager);
     }
 
-    private void populateTimeline(String id, boolean isMaxId){
-        client.getHomeTimeline(id, isMaxId, new JsonHttpResponseHandler(){
-
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONArray json) {
-                //Log.d("DEBUG", json.toString());
-                aTweets.addAll(Tweet.fromJSONArray(json));
-                //Log.d("DEBUG", aTweets.toString());
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                Log.d("DEBUG", errorResponse.toString());
-            }
-        });
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -86,12 +53,54 @@ public class TimelineActivity extends ActionBarActivity {
         return true;
     }
 
+    public void onProfileView(MenuItem mi) {
+        Intent i = new Intent(this, MyProfileActivity.class);
+        startActivity(i);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         Log.i("DEBUG", "TimelineActivity onActivityResult called");
        if (resultCode == RESULT_OK){
-            aTweets.clear();
-            populateTimeline("1", false);
+           homeTimelineFragment.repopulateTimeline();
+           mentiionsTimelineFragment.repopulateTimeline();
+           vpPager.setCurrentItem(0);
         }
+    }
+
+    public class TweetsPagerAdapter extends FragmentPagerAdapter{
+        private String[] tabTitles = {"Home" , "Mentions"};
+
+        public TweetsPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            if (position == 0){
+                return homeTimelineFragment = new HomeTimelineFragment();
+            }else{
+                if(position == 1) {
+                    return mentiionsTimelineFragment = new MentiionsTimelineFragment();
+                }else {
+                    return null;
+                }
+            }
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return tabTitles[position];
+        }
+
+        @Override
+        public int getCount() {
+            return tabTitles.length;
+        }
+    }
+
+    @Override
+    public void onTweetsReady(Tweet tweet) {
+
     }
 }

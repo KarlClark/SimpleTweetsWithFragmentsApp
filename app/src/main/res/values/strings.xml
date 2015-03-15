@@ -11,5 +11,7 @@
     <string name="cancel_text">Cancel</string>
     <string name="tweet_text">TWEET</string>
     <string name="chars_remainng_text">Chars left:</string>
+    <string name="title_activity_profile">Profile</string>
+    <string name="action_settings">Settings</string>
 
 </resources>
