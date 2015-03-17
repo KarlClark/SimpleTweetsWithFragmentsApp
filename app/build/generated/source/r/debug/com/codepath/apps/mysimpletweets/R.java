@@ -1568,9 +1568,10 @@ containing a value of this type.
         public static final int login_label=0x7f0a0015;
         public static final int title_activity_compose_tweet=0x7f0a0016;
         public static final int title_activity_profile=0x7f0a0017;
-        public static final int title_activity_timeline=0x7f0a0018;
-        public static final int title_activity_tweet=0x7f0a0019;
-        public static final int tweet_text=0x7f0a001a;
+        public static final int title_activity_tweet=0x7f0a0018;
+        public static final int title_home_timeline=0x7f0a0019;
+        public static final int title_mentions_timeline=0x7f0a001a;
+        public static final int tweet_text=0x7f0a001b;
     }
     public static final class style {
         /** 

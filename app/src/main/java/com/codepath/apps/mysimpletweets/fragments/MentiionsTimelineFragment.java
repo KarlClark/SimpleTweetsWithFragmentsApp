@@ -9,7 +9,7 @@ public class MentiionsTimelineFragment extends TweetsListFragment{
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-       whichTimeline = "mentions_timeline";
-       super.onCreate(savedInstanceState);
+        whichTimeline = "mentions_timeline";
+        super.onCreate(savedInstanceState);
     }
 }

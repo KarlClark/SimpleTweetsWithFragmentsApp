@@ -175,8 +175,9 @@
     <string name="login_label">Connect to Twitter</string>
     <string name="title_activity_compose_tweet">Compose Tweet</string>
     <string name="title_activity_profile">Profile</string>
-    <string name="title_activity_timeline">Home Timeline</string>
     <string name="title_activity_tweet">Tweet</string>
+    <string name="title_home_timeline">Home Timeline</string>
+    <string name="title_mentions_timeline">Mentions</string>
     <string name="tweet_text">TWEET</string>
     <!-- From: file:/C:/Users/Karl/AndroidStudioProjects/Codepath/SimpleTweetsWithFragmentsApp/app/src/main/res/values/styles.xml -->
     <eat-comment/>

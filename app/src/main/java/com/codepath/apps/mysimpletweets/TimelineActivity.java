@@ -10,6 +10,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.codepath.apps.mysimpletweets.fragments.HomeTimelineFragment;
@@ -96,6 +97,17 @@ public class TimelineActivity extends ActionBarActivity implements TweetsListFra
         @Override
         public int getCount() {
             return tabTitles.length;
+        }
+
+        @Override
+        public void setPrimaryItem(ViewGroup container, int position, Object object){
+            if (position == 0) {
+                getSupportActionBar().setTitle(getResources().getString((R.string.title_home_timeline)));
+            }else {
+                if (position == 1){
+                    getSupportActionBar().setTitle(getResources().getString((R.string.title_mentions_timeline)));
+                }
+            }
         }
     }
 
