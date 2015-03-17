@@ -5,4 +5,4 @@
     <item android:id="@+id/action_settings" android:title="@string/action_tweet"
         android:orderInCategory="100" app:showAsAction="never" />
 </menu>
-<!-- From: file:/C:/Users/Karl/AndroidStudioProjects/Codepath/MySimpleTweets4/app/src/main/res/menu/menu_compose_tweet.xml -->
+<!-- From: file:/C:/Users/Karl/AndroidStudioProjects/Codepath/SimpleTweetsWithFragmentsApp/app/src/main/res/menu/menu_compose_tweet.xml -->

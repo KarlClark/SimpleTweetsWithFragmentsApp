@@ -48,5 +48,7 @@ public class ProfileActivity extends ActionBarActivity implements TweetsListFrag
         tvFollowers.setText("" + user.getFollowersCount() + " Followers");
         tvFollowing.setText("" + user.getFollowingsCount() + " Following");
         Picasso.with(this).load(user.getProfileImageUrl()).into(ivProfileImage);
+
+        getSupportActionBar().setTitle("@" + user.getScreenName());
     }
 }
